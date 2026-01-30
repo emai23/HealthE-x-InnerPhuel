@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnerPhuel × HealthE Corporate Pilot</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --teal: #0D9488;
+            --teal-dark: #0F766E;
+            --violet: #7C3AED;
+            --bg-light: #F8F9FA;
+            --bg-accent: #F0F9F8;
+            --text-primary: #1a1a1a;
+            --text-muted: #666;
+            --text-light: #999;
+            --border: #E5E7EB;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow: 0 2px 12px rgba(0,0,0,0.06);
+            --shadow-hover: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F8F9FA;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--teal);
+            margin-bottom: 8px;
+        }
+        
+        .header .subtitle {
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+        
+        /* Quick Stats Strip */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin-top: 30px;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            color: white;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 16px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+        }
+        
+        .nav-btn {
+            padding: 12px 20px;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .nav-btn:hover {
+            background: var(--bg-accent);
+            border-color: var(--teal);
+        }
+        
+        .nav-btn:focus {
+            outline: 3px solid rgba(13, 148, 136, 0.35);
+            outline-offset: 2px;
+        }
+        
+        .nav-btn.active {
+            background: var(--teal);
+            color: white;
+            border-color: var(--teal);
+        }
+        
+        /* Content Sections */
+        .content {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0D9488;
+            margin-bottom: 24px;
+        }
+        
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+        
+        .card {
+            background: #F8F9FA;
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 4px solid #0D9488;
+        }
+        
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .card-subtitle {
+            font-size: 12px;
+            font-weight: 700;
+            color: #7C3AED;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+        
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .card li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: #666;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card li::before {
+            content: "→";
+            margin-right: 8px;
+            color: #0D9488;
+            font-weight: 700;
+        }
+        
+        /* Timeline */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .timeline-phase {
+            background: #F8F9FA;
+            padding: 20px;
+            border-radius: 12px;
+            position: relative;
+        }
+        
+        .timeline-phase::after {
+            content: "→";
+            position: absolute;
+            right: -24px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #0D9488;
+            font-weight: 700;
+        }
+        
+        .timeline-phase:last-child::after {
+            display: none;
+        }
+        
+        .timeline-week {
+            font-size: 11px;
+            font-weight: 700;
+            color: #7C3AED;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-detail {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        /* Engine Comparison */
+        .engine-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 24px 0;
+        }
+        
+        .engine-card {
+            background: linear-gradient(135deg, #F0F9F8 0%, #E6F7F5 100%);
+            padding: 32px;
+            border-radius: 16px;
+            border: 2px solid #0D9488;
+        }
+        
+        .engine-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #0D9488;
+            margin-bottom: 8px;
+        }
+        
+        .engine-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .engine-detail {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+        
+        /* RACI Table */
+        .raci-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+        
+        .raci-table th {
+            background: #0D9488;
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .raci-table td {
+            padding: 16px;
+            border-bottom: 1px solid #E5E7EB;
+            font-size: 14px;
+        }
+        
+        .raci-table tr:hover {
+            background: #F8F9FA;
+        }
+        
+        .raci-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .raci-r { background: #DBEAFE; color: #1E40AF; }
+        .raci-a { background: #D1FAE5; color: #065F46; }
+        .raci-c { background: #FEF3C7; color: #92400E; }
+        .raci-i { background: #E5E7EB; color: #374151; }
+        
+        /* Metric Cards */
+        .metric-card {
+            background: #F8F9FA;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            border-top: 4px solid #0D9488;
+        }
+        
+        .metric-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0D9488;
+            margin-bottom: 8px;
+        }
+        
+        .metric-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        
+        .metric-method {
+            font-size: 12px;
+            color: #999;
+            font-style: italic;
+        }
+        
+        /* Decision Cards */
+        .decision-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+        
+        .decision-card {
+            padding: 24px;
+            border-radius: 12px;
+            border: 2px solid;
+        }
+        
+        .decision-card.strong {
+            background: #F0FDF4;
+            border-color: #10B981;
+        }
+        
+        .decision-card.mixed {
+            background: #FFF9E6;
+            border-color: #F59E0B;
+        }
+        
+        .decision-card.weak {
+            background: #FEF2F2;
+            border-color: #EF4444;
+        }
+        
+        .decision-card.partnership {
+            background: #EFF6FF;
+            border-color: #3B82F6;
+        }
+        
+        .decision-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .decision-card.strong .decision-label { color: #065F46; }
+        .decision-card.mixed .decision-label { color: #92400E; }
+        .decision-card.weak .decision-label { color: #991B1B; }
+        .decision-card.partnership .decision-label { color: #1E40AF; }
+        
+        .decision-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .decision-criteria {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+        
+        .decision-options {
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 16px;
+        }
+        
+        .decision-option {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+            padding-left: 16px;
+            position: relative;
+        }
+        
+        .decision-option::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+        
+        /* Pricing Table */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 24px 0;
+        }
+        
+        .pricing-box {
+            background: #F8F9FA;
+            padding: 28px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .pricing-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #7C3AED;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-amount {
+            font-size: 40px;
+            font-weight: 700;
+            color: #0D9488;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-detail {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        /* Split Visual */
+        .split-visual {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 24px 0;
+            padding: 28px;
+            background: #F8F9FA;
+            border-radius: 12px;
+        }
+        
+        .split-box {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .split-percentage {
+            font-size: 48px;
+            font-weight: 700;
+            color: #0D9488;
+        }
+        
+        .split-party {
+            font-size: 14px;
+            color: #666;
+            margin-top: 8px;
+        }
+        
+        .split-arrow {
+            font-size: 32px;
+            color: #0D9488;
+            font-weight: 700;
+        }
+        
+        /* Collapsible */
+        .accordion {
+            margin: 12px 0;
+        }
+        
+        .collapsible {
+            width: 100%;
+            background: var(--bg-light);
+            padding: 16px 20px;
+            border-radius: var(--radius-sm);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s ease;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .collapsible:hover {
+            background: var(--bg-accent);
+        }
+        
+        .collapsible:focus {
+            outline: 3px solid rgba(13, 148, 136, 0.35);
+            outline-offset: 2px;
+        }
+        
+        .collapsible-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        
+        .collapsible-arrow {
+            font-size: 18px;
+            color: var(--teal);
+            transition: transform 0.3s ease;
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .accordion.active .collapsible-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .accordion.active .collapsible-content {
+            max-height: 2000px;
+            padding-top: 16px;
+        }
+        
+        /* Utility Classes */
+        .clean-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .clean-list li {
+            padding: 6px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .mt-24 { margin-top: 24px; }
+        .mt-40 { margin-top: 40px; }
+        
+        /* Flow Diagram */
+        .diagram-container {
+            background: #F8F9FA;
+            padding: 32px;
+            border-radius: 12px;
+            margin: 24px 0;
+            overflow-x: auto;
+        }
+        
+        .diagram-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .path-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            color: #666;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .path-btn:hover {
+            border-color: #0D9488;
+            background: #F0F9F8;
+        }
+        
+        .path-btn.active {
+            background: #0D9488;
+            color: white;
+            border-color: #0D9488;
+        }
+        
+        .diagram-svg {
+            width: 100%;
+            min-height: 500px;
+        }
+        
+        /* SVG Node Styles */
+        .node {
+            transition: all 0.3s ease;
+        }
+        
+        .node rect, .node ellipse {
+            transition: all 0.3s ease;
+        }
+        
+        .node text {
+            transition: all 0.3s ease;
+        }
+        
+        .connector {
+            transition: all 0.3s ease;
+            opacity: 1;
+            stroke-width: 2;
+        }
+        
+        .connector.active {
+            opacity: 1 !important;
+            stroke-width: 4 !important;
+            filter: drop-shadow(0 2px 6px rgba(13, 148, 136, 0.6));
+        }
+        
+        .node.active rect, .node.active ellipse {
+            filter: drop-shadow(0 4px 16px rgba(13, 148, 136, 0.6)) !important;
+            stroke-width: 3 !important;
+            opacity: 1 !important;
+        }
+        
+        .node.active text {
+            opacity: 1 !important;
+            font-weight: 700 !important;
+        }
+        
+        .node.dimmed {
+            opacity: 0.12 !important;
+        }
+        
+        .node.dimmed rect, .node.dimmed ellipse {
+            opacity: 0.12 !important;
+            stroke-width: 1 !important;
+        }
+        
+        .node.dimmed text {
+            opacity: 0.12 !important;
+        }
+        
+        .connector.dimmed {
+            opacity: 0.12 !important;
+            stroke-width: 1 !important;
+        }
+        
+        /* Info Box */
+        .info-box {
+            background: #EFF6FF;
+            border-left: 4px solid #3B82F6;
+            padding: 16px 20px;
+            border-radius: var(--radius-sm);
+            margin: 20px 0;
+            font-size: 14px;
+            color: #1E40AF;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .timeline {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .timeline-phase::after {
+                display: none;
+            }
+            
+            .engine-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .nav {
+                display: none;
+            }
+            
+            .content {
+                display: block !important;
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+            
+            .accordion .collapsible-content {
+                max-height: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Corporate Pilot: InnerPhuel × HealthE</h1>
+            <p class="subtitle">Workshop Enhancement with Digital Continuity Layer</p>
+            
+            <div class="stats-strip">
+                <div class="stat-box">
+                    <div class="stat-number">12 weeks</div>
+                    <div class="stat-label">Pilot Duration</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">$8.5K</div>
+                    <div class="stat-label">Pilot Rate</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">8–12 hrs</div>
+                    <div class="stat-label">InnerPhuel Time</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">2 Engines</div>
+                    <div class="stat-label">Workshop + Digital</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">80/20</div>
+                    <div class="stat-label">Pilot Split</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="nav" role="tablist">
+            <button class="nav-btn active" data-tab="overview" role="tab" aria-selected="true" aria-controls="overview">Pilot Overview</button>
+            <button class="nav-btn" data-tab="architecture" role="tab" aria-selected="false" aria-controls="architecture">System Architecture</button>
+            <button class="nav-btn" data-tab="roles" role="tab" aria-selected="false" aria-controls="roles">Roles & Ownership</button>
+            <button class="nav-btn" data-tab="metrics" role="tab" aria-selected="false" aria-controls="metrics">Success Metrics</button>
+            <button class="nav-btn" data-tab="economics" role="tab" aria-selected="false" aria-controls="economics">Economics</button>
+            <button class="nav-btn" data-tab="postpilot" role="tab" aria-selected="false" aria-controls="postpilot">Post-Pilot</button>
+        </div>
+        
+        <!-- PILOT OVERVIEW -->
+        <div class="content active" id="overview" role="tabpanel">
+            <h2 class="section-title">Pilot Overview</h2>
+            
+            <div class="info-box">
+                <strong>Core Question:</strong> Does digital continuity improve workshop outcomes without increasing facilitator time?
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-phase">
+                    <div class="timeline-week">Weeks 1–2</div>
+                    <div class="timeline-title">Setup</div>
+                    <div class="timeline-detail">Client ID, proposal, alignment call</div>
+                </div>
+                
+                <div class="timeline-phase">
+                    <div class="timeline-week">Weeks 3–4</div>
+                    <div class="timeline-title">Workshop</div>
+                    <div class="timeline-detail">2-day Resilience Advantage™ delivery</div>
+                </div>
+                
+                <div class="timeline-phase">
+                    <div class="timeline-week">Weeks 5–8</div>
+                    <div class="timeline-title">Digital Layer</div>
+                    <div class="timeline-detail">30 days automated support + Week 6 check-in</div>
+                </div>
+                
+                <div class="timeline-phase">
+                    <div class="timeline-week">Weeks 9–12</div>
+                    <div class="timeline-title">Decision</div>
+                    <div class="timeline-detail">Results review, path selection</div>
+                </div>
+            </div>
+            
+            <h3 class="section-title mt-40">Two-Engine Model</h3>
+            
+            <div class="engine-grid">
+                <div class="engine-card">
+                    <div class="engine-number">1</div>
+                    <div class="engine-name">Workshop (Core)</div>
+                    <div class="engine-detail">2-day facilitated training</div>
+                    <ul class="clean-list">
+                        <li>✓ HeartMath® certification</li>
+                        <li>✓ Live facilitation by InnerPhuel</li>
+                        <li>✓ Group HRV assessments</li>
+                        <li>✓ Immediate skill building</li>
+                    </ul>
+                </div>
+                
+                <div class="engine-card">
+                    <div class="engine-number">2</div>
+                    <div class="engine-name">Digital Continuity</div>
+                    <div class="engine-detail">30-day automated layer</div>
+                    <ul class="clean-list">
+                        <li>✓ Daily practice prompts</li>
+                        <li>✓ Self-tracking tools</li>
+                        <li>✓ Progress check-ins</li>
+                        <li>✓ Engagement analytics</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="cards-grid mt-40">
+                <div class="card">
+                    <div class="card-subtitle">InnerPhuel Provides</div>
+                    <ul>
+                        <li>HeartMath expertise</li>
+                        <li>Client relationships</li>
+                        <li>Workshop facilitation</li>
+                        <li>RN clinical credibility</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <div class="card-subtitle">HealthE Provides</div>
+                    <ul>
+                        <li>Email automation</li>
+                        <li>Content sequences</li>
+                        <li>Engagement tracking</li>
+                        <li>Dashboard analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SYSTEM ARCHITECTURE -->
+        <div class="content" id="architecture" role="tabpanel">
+            <h2 class="section-title">System Architecture</h2>
+            
+            <div class="engine-grid">
+                <div class="engine-card">
+                    <div class="engine-number">1</div>
+                    <div class="engine-name">Workshop Engine</div>
+                    <div class="engine-detail"><strong>Owner:</strong> InnerPhuel</div>
+                    
+                    <div class="mt-24">
+                        <div style="font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px;">Assets:</div>
+                        <ul class="clean-list">
+                            <li>→ Resilience Advantage™ curriculum</li>
+                            <li>→ HeartMath® devices (optional)</li>
+                            <li>→ Client proposals & sales materials</li>
+                            <li>→ Facilitator expertise</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mt-24">
+                        <div style="font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px;">Handoff Point:</div>
+                        <div style="font-size: 13px; color: #666; background: white; padding: 12px; border-radius: 8px;">
+                            Day 2 workshop conclusion<br>
+                            5-min intro to digital support
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="engine-card">
+                    <div class="engine-number">2</div>
+                    <div class="engine-name">Digital Engine</div>
+                    <div class="engine-detail"><strong>Owner:</strong> HealthE</div>
+                    
+                    <div class="mt-24">
+                        <div style="font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px;">Assets:</div>
+                        <ul class="clean-list">
+                            <li>→ Email automation platform</li>
+                            <li>→ 30-day content sequences</li>
+                            <li>→ Engagement dashboard</li>
+                            <li>→ Analytics & reporting</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mt-24">
+                        <div style="font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px;">Maintenance:</div>
+                        <div style="font-size: 13px; color: #666; background: white; padding: 12px; border-radius: 8px;">
+                            Ongoing content optimization<br>
+                            Cross-client insights
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion mt-40">
+                <button class="collapsible" aria-expanded="false" aria-controls="accordion-week6">
+                    <span class="collapsible-title">Week 6 Adjustment Gate</span>
+                    <span class="collapsible-arrow">▼</span>
+                </button>
+                <div class="collapsible-content" id="accordion-week6">
+                    <div style="padding: 16px; background: white; border-radius: 8px;">
+                        <p style="font-size: 13px; color: #666; margin-bottom: 8px;"><strong>If metrics fall below threshold:</strong></p>
+                        <ul style="margin-left: 20px; font-size: 13px; color: #666; line-height: 1.8;">
+                            <li>Pause automation for 1 week</li>
+                            <li>Joint diagnostic workshop (2 hours)</li>
+                            <li>Adjust content, frequency, or tone</li>
+                            <li>Restart with refinements for remaining weeks</li>
+                            <li>Does not count as pilot "failure" — rapid iteration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ROLES & OWNERSHIP -->
+        <div class="content" id="roles" role="tabpanel">
+            <h2 class="section-title">Roles & Ownership</h2>
+            
+            <table class="raci-table">
+                <thead>
+                    <tr>
+                        <th>Activity</th>
+                        <th>InnerPhuel</th>
+                        <th>HealthE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Client Identification</strong></td>
+                        <td><span class="raci-badge raci-r">Responsible</span></td>
+                        <td><span class="raci-badge raci-i">Informed</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Proposal Creation</strong></td>
+                        <td><span class="raci-badge raci-r">Responsible</span></td>
+                        <td><span class="raci-badge raci-c">Consulted</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Workshop Delivery</strong></td>
+                        <td><span class="raci-badge raci-r">Responsible</span></td>
+                        <td><span class="raci-badge raci-i">Informed</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Content Configuration</strong></td>
+                        <td><span class="raci-badge raci-c">Consulted</span></td>
+                        <td><span class="raci-badge raci-r">Responsible</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email Automation</strong></td>
+                        <td><span class="raci-badge raci-i">Informed</span></td>
+                        <td><span class="raci-badge raci-r">Responsible</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Engagement Tracking</strong></td>
+                        <td><span class="raci-badge raci-c">Consulted</span></td>
+                        <td><span class="raci-badge raci-r">Responsible</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Week 6 Check-In</strong></td>
+                        <td><span class="raci-badge raci-a">Accountable</span></td>
+                        <td><span class="raci-badge raci-r">Responsible</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Results Analysis</strong></td>
+                        <td><span class="raci-badge raci-a">Accountable</span></td>
+                        <td><span class="raci-badge raci-r">Responsible</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Client Invoicing</strong></td>
+                        <td><span class="raci-badge raci-r">Responsible</span></td>
+                        <td><span class="raci-badge raci-i">Informed</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Revenue Split</strong></td>
+                        <td><span class="raci-badge raci-a">Accountable</span></td>
+                        <td><span class="raci-badge raci-a">Accountable</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="info-box" style="margin-top: 30px;">
+                <strong>Legend:</strong> R = Responsible (does the work) • A = Accountable (final approval) • C = Consulted (input required) • I = Informed (kept updated)
+            </div>
+        </div>
+        
+        <!-- SUCCESS METRICS -->
+        <div class="content" id="metrics" role="tabpanel">
+            <h2 class="section-title">Success Metrics</h2>
+            
+            <div class="info-box">
+                <strong>Reporting Cadence:</strong> Week 6 check-in snapshot • Final readout in Weeks 9–12
+            </div>
+            
+            <div class="cards-grid">
+                <div class="metric-card">
+                    <div class="metric-value">70%+</div>
+                    <div class="metric-label">Email Open Rate</div>
+                    <div class="metric-method">Daily automated emails</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">60%+</div>
+                    <div class="metric-label">Practice Completion</div>
+                    <div class="metric-method">Self-reported via check-ins</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">70%+</div>
+                    <div class="metric-label">30-Day Retention</div>
+                    <div class="metric-method">Still engaged at Day 30</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">70%+</div>
+                    <div class="metric-label">Improved Stress Mgmt</div>
+                    <div class="metric-method">Post-survey self-report</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">60%+</div>
+                    <div class="metric-label">Daily Technique Use</div>
+                    <div class="metric-method">After 30 days</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">4.5+/5</div>
+                    <div class="metric-label">Client Satisfaction</div>
+                    <div class="metric-method">HR decision-maker rating</div>
+                </div>
+            </div>
+            
+            <div class="accordion mt-40">
+                <button class="collapsible" aria-expanded="false" aria-controls="accordion-hrv">
+                    <span class="collapsible-title">Optional: HRV Testing (if sensors used)</span>
+                    <span class="collapsible-arrow">▼</span>
+                </button>
+                <div class="collapsible-content" id="accordion-hrv">
+                    <div class="cards-grid mt-24">
+                        <div class="card">
+                            <div class="card-title">Option A: Workshop Only</div>
+                            <div style="font-size: 13px; color: #666; margin-bottom: 12px;">Baseline + Day 2 post-test</div>
+                            <ul>
+                                <li>No sensor purchase needed</li>
+                                <li>Shows immediate workshop impact</li>
+                                <li>Cannot validate 30-day continuity</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-title">Option B: Extended Tracking</div>
+                            <div style="font-size: 13px; color: #666; margin-bottom: 12px;">$2.4K–3.2K for 15-20 sensors</div>
+                            <ul>
+                                <li>Participants take sensors home</li>
+                                <li>Week 2 & Week 4 readings</li>
+                                <li>Validates full digital layer impact</li>
+                                <li>Sensors reusable for future workshops</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-title">Option C: Own Wearables</div>
+                            <div style="font-size: 13px; color: #666; margin-bottom: 12px;">No cost, partial sample</div>
+                            <ul>
+                                <li>Apple Watch, Oura, Whoop, etc.</li>
+                                <li>Only 40-60% of participants</li>
+                                <li>Data less standardized</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ECONOMICS -->
+        <div class="content" id="economics" role="tabpanel">
+            <h2 class="section-title">Economics</h2>
+            
+            <div class="pricing-grid">
+                <div class="pricing-box">
+                    <div class="pricing-label">Pilot Rate (Bundled)</div>
+                    <div class="pricing-amount">$8,500</div>
+                    <div class="pricing-detail">15–20 participants<br>$425–567 per person</div>
+                    <div style="font-size: 12px; color: #999; margin-top: 12px; font-style: italic;">
+                        Bundled = Workshop + Digital Layer
+                    </div>
+                </div>
+                
+                <div class="pricing-box">
+                    <div class="pricing-label">Standard Rate (Future)</div>
+                    <div class="pricing-amount">$12K–13K</div>
+                    <div class="pricing-detail">15–20 participants<br>$625–833 per person</div>
+                    <div style="font-size: 12px; color: #999; margin-top: 12px; font-style: italic;">
+                        May be bundled or offered separately
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-box mt-24">
+                <strong>Payment Flow:</strong> Client pays InnerPhuel → InnerPhuel invoices client → InnerPhuel pays HealthE revenue share after collection
+            </div>
+            
+            <h3 class="section-title mt-40">Revenue Split</h3>
+            
+            <div class="split-visual">
+                <div class="split-box">
+                    <div class="split-percentage">80%</div>
+                    <div class="split-party">InnerPhuel</div>
+                </div>
+                <div class="split-arrow">→</div>
+                <div class="split-box">
+                    <div class="split-percentage">20%</div>
+                    <div class="split-party">HealthE</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 16px; font-size: 14px; color: #666;">
+                <strong>Pilot Phase:</strong> 80/20 split while HealthE proves value
+            </div>
+            
+            <div class="split-visual" style="margin-top: 30px;">
+                <div class="split-box">
+                    <div class="split-percentage">70%</div>
+                    <div class="split-party">InnerPhuel</div>
+                </div>
+                <div class="split-arrow">→</div>
+                <div class="split-box">
+                    <div class="split-percentage">30%</div>
+                    <div class="split-party">HealthE</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 16px; font-size: 14px; color: #666;">
+                <strong>Standard Phase:</strong> 70/30 split if partnership continues
+            </div>
+            
+            <div class="accordion mt-40">
+                <button class="collapsible" aria-expanded="false" aria-controls="accordion-investment">
+                    <span class="collapsible-title">Investment Breakdown</span>
+                    <span class="collapsible-arrow">▼</span>
+                </button>
+                <div class="collapsible-content" id="accordion-investment">
+                    <div class="cards-grid mt-24">
+                        <div class="card">
+                            <div class="card-title">InnerPhuel</div>
+                            <ul>
+                                <li>8–12 hours beyond normal workshop</li>
+                                <li>Optional: HeartMath sensors ($2.4–3.2K)</li>
+                                <li>Zero financial risk</li>
+                                <li>Sensors reusable if purchased</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-title">HealthE</div>
+                            <ul>
+                                <li>Email platform setup & hosting</li>
+                                <li>Content sequence creation (30 days)</li>
+                                <li>Dashboard configuration</li>
+                                <li>Engagement analytics & reporting</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- POST-PILOT PATHS -->
+        <div class="content" id="postpilot" role="tabpanel">
+            <h2 class="section-title">Post-Pilot Paths</h2>
+            
+            <div class="info-box">
+                <strong>Timing:</strong> These decisions are made at the end of the pilot (Weeks 9–12) based on results data
+            </div>
+            
+            <h3 class="section-title mt-40">Ownership Path Visualization</h3>
+            
+            <div class="diagram-container">
+                <div class="diagram-controls">
+                    <button class="path-btn active" data-path="all">Show All Paths</button>
+                    <button class="path-btn" data-path="1a">Path 1A: B2B2C Upsell</button>
+                    <button class="path-btn" data-path="1b">Path 1B: Independent B2C</button>
+                    <button class="path-btn" data-path="2">Path 2: Partnership</button>
+                </div>
+                
+                <svg class="diagram-svg" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Definitions -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <polygon points="0 0, 10 3, 0 6" fill="#0D9488" />
+                        </marker>
+                        <marker id="arrowhead-dashed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <polygon points="0 0, 10 3, 0 6" fill="#7C3AED" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Column Labels -->
+                    <text x="100" y="30" font-size="14" font-weight="600" fill="#7C3AED" text-anchor="middle">ENGINE MODEL</text>
+                    <text x="500" y="30" font-size="14" font-weight="600" fill="#7C3AED" text-anchor="middle">OWNERSHIP PATHS</text>
+                    <text x="850" y="30" font-size="14" font-weight="600" fill="#7C3AED" text-anchor="middle">MARKETS</text>
+                    
+                    <!-- ENGINE 1: Workshop (B2B) -->
+                    <g class="node engine" data-path="all,1a,1b,2">
+                        <rect x="20" y="80" width="160" height="70" rx="8" fill="#0D9488" />
+                        <text x="100" y="105" font-size="13" font-weight="600" fill="white" text-anchor="middle">Engine 1</text>
+                        <text x="100" y="125" font-size="12" fill="white" text-anchor="middle">Workshop (B2B)</text>
+                        <text x="100" y="142" font-size="11" fill="rgba(255,255,255,0.8)" text-anchor="middle">Live facilitation</text>
+                    </g>
+                    
+                    <!-- Connector: Engine 1 to Engine 2 -->
+                    <path class="connector" data-path="all,1a,1b,2" d="M 100 150 L 100 200" stroke="#0D9488" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+                    
+                    <!-- ENGINE 2: Digital Continuity -->
+                    <g class="node engine" data-path="all,1a,1b,2">
+                        <rect x="20" y="200" width="160" height="70" rx="8" fill="#0D9488" />
+                        <text x="100" y="225" font-size="13" font-weight="600" fill="white" text-anchor="middle">Engine 2</text>
+                        <text x="100" y="245" font-size="12" fill="white" text-anchor="middle">Digital Continuity</text>
+                        <text x="100" y="262" font-size="11" fill="rgba(255,255,255,0.8)" text-anchor="middle">30-day automated</text>
+                    </g>
+                    
+                    <!-- Connector: Engine 2 to Paths -->
+                    <path class="connector" data-path="all,1a,1b,2" d="M 180 235 L 280 235" stroke="#0D9488" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+                    
+                    <!-- PATH 1A: B2B2C Upsell Only -->
+                    <g class="node path" data-path="all,1a">
+                        <rect x="280" y="80" width="200" height="90" rx="8" fill="#F0FDF4" stroke="#10B981" stroke-width="2" />
+                        <text x="380" y="105" font-size="13" font-weight="700" fill="#065F46" text-anchor="middle">Path 1A: B2B2C</text>
+                        <text x="380" y="125" font-size="12" fill="#166534" text-anchor="middle">Upsell Only</text>
+                        <text x="380" y="145" font-size="11" fill="#666" text-anchor="middle">Post-workshop individual</text>
+                        <text x="380" y="162" font-size="11" fill="#666" text-anchor="middle">purchases (limited B2C)</text>
+                    </g>
+                    
+                    <!-- PATH 1B: Independent B2C Ecosystem -->
+                    <g class="node path" data-path="all,1b">
+                        <rect x="280" y="200" width="200" height="90" rx="8" fill="#FFF9E6" stroke="#F59E0B" stroke-width="2" />
+                        <text x="380" y="225" font-size="13" font-weight="700" fill="#92400E" text-anchor="middle">Path 1B: Independent B2C</text>
+                        <text x="380" y="245" font-size="12" fill="#92400E" text-anchor="middle">Full Ecosystem</text>
+                        <text x="380" y="265" font-size="11" fill="#666" text-anchor="middle">Lead magnets, courses,</text>
+                        <text x="380" y="282" font-size="11" fill="#666" text-anchor="middle">cold traffic funnels</text>
+                    </g>
+                    
+                    <!-- PATH 2: Partnership -->
+                    <g class="node path" data-path="all,2">
+                        <rect x="280" y="320" width="200" height="90" rx="8" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2" />
+                        <text x="380" y="345" font-size="13" font-weight="700" fill="#1E40AF" text-anchor="middle">Path 2: Partnership</text>
+                        <text x="380" y="365" font-size="12" fill="#1E40AF" text-anchor="middle">Build in Parallel</text>
+                        <text x="380" y="385" font-size="11" fill="#666" text-anchor="middle">HealthE owns B2C,</text>
+                        <text x="380" y="402" font-size="11" fill="#666" text-anchor="middle">InnerPhuel owns B2B</text>
+                    </g>
+                    
+                    <!-- B2B MARKET -->
+                    <g class="node market" data-path="all,1a,1b,2">
+                        <ellipse cx="850" cy="125" rx="100" ry="50" fill="#E6F7F5" stroke="#0D9488" stroke-width="2" />
+                        <text x="850" y="118" font-size="13" font-weight="600" fill="#0D9488" text-anchor="middle">B2B Market</text>
+                        <text x="850" y="135" font-size="11" fill="#666" text-anchor="middle">Corporate clients</text>
+                    </g>
+                    
+                    <!-- B2C MARKET -->
+                    <g class="node market" data-path="all,1a,1b,2">
+                        <ellipse cx="850" cy="280" rx="100" ry="50" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2" />
+                        <text x="850" y="273" font-size="13" font-weight="600" fill="#92400E" text-anchor="middle">B2C Market</text>
+                        <text x="850" y="290" font-size="11" fill="#666" text-anchor="middle">Individual buyers</text>
+                    </g>
+                    
+                    <!-- Connectors: Paths to Markets -->
+                    
+                    <!-- Path 1A to B2B Market -->
+                    <path class="connector" data-path="all,1a" d="M 480 125 L 740 125" stroke="#0D9488" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+                    
+                    <!-- Path 1A to B2C Market (Bridge - dashed) -->
+                    <path class="connector" data-path="all,1a" d="M 480 170 L 770 250" stroke="#7C3AED" stroke-width="2" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead-dashed)" />
+                    <text data-path="all,1a" x="620" y="200" font-size="10" fill="#7C3AED" font-style="italic">Upsell Bridge</text>
+                    
+                    <!-- Path 1B to B2B Market (optional connection - dashed) -->
+                    <path class="connector" data-path="all,1b" d="M 480 210 L 770 150" stroke="#7C3AED" stroke-width="2" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead-dashed)" />
+                    
+                    <!-- Path 1B to B2C Market -->
+                    <path class="connector" data-path="all,1b" d="M 480 255 L 740 275" stroke="#0D9488" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+                    
+                    <!-- Path 2 to B2B Market -->
+                    <path class="connector" data-path="all,2" d="M 480 340 L 770 160" stroke="#0D9488" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+                    
+                    <!-- Path 2 to B2C Market -->
+                    <path class="connector" data-path="all,2" d="M 480 390 L 770 310" stroke="#0D9488" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+                    
+                    <!-- IP Lane Indicators -->
+                    <g class="node annotation" data-path="all,2">
+                        <rect x="520" y="450" width="180" height="60" rx="6" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="3,3" />
+                        <text x="610" y="470" font-size="11" font-weight="600" fill="#666" text-anchor="middle">IP Ownership</text>
+                        <text x="610" y="488" font-size="10" fill="#666" text-anchor="middle">InnerPhuel: B2B assets</text>
+                        <text x="610" y="503" font-size="10" fill="#666" text-anchor="middle">HealthE: B2C platform</text>
+                    </g>
+                    
+                    <!-- Legend -->
+                    <g transform="translate(20, 480)">
+                        <text x="0" y="0" font-size="11" font-weight="600" fill="#666">Legend:</text>
+                        <line x1="0" y1="15" x2="30" y2="15" stroke="#0D9488" stroke-width="2" />
+                        <text x="35" y="19" font-size="10" fill="#666">Primary Flow</text>
+                        <line x1="0" y1="35" x2="30" y2="35" stroke="#7C3AED" stroke-width="2" stroke-dasharray="5,5" />
+                        <text x="35" y="39" font-size="10" fill="#666">Optional/Bridge</text>
+                    </g>
+                </svg>
+            </div>
+            
+            <h3 class="section-title mt-40">Path Details</h3>
+            
+            <div class="decision-cards">
+                <div class="decision-card strong">
+                    <div class="decision-label">Path 1A: B2B2C Upsell</div>
+                    <div class="decision-title">Post-Workshop Individual Sales</div>
+                    <div class="decision-criteria">
+                        Corporate workshop → individuals purchase additional support
+                    </div>
+                    <div class="decision-options">
+                        <div class="decision-option">InnerPhuel owns all IP</div>
+                        <div class="decision-option">Limited B2C exposure (upsell only)</div>
+                        <div class="decision-option">No cold traffic marketing needed</div>
+                        <div class="decision-option">Lower complexity, faster to launch</div>
+                    </div>
+                </div>
+                
+                <div class="decision-card mixed">
+                    <div class="decision-label">Path 1B: Independent B2C</div>
+                    <div class="decision-title">Full Consumer Ecosystem</div>
+                    <div class="decision-criteria">
+                        Build complete B2C funnel: lead magnets → courses → coaching
+                    </div>
+                    <div class="decision-options">
+                        <div class="decision-option">InnerPhuel owns all B2B + B2C IP</div>
+                        <div class="decision-option">Requires marketing infrastructure</div>
+                        <div class="decision-option">60-80 hours build + $2-3K investment</div>
+                        <div class="decision-option">Higher revenue potential, higher effort</div>
+                    </div>
+                </div>
+                
+                <div class="decision-card partnership">
+                    <div class="decision-label">Path 2: Partnership</div>
+                    <div class="decision-title">Parallel Development Model</div>
+                    <div class="decision-criteria">
+                        InnerPhuel focuses B2B, HealthE builds B2C in parallel
+                    </div>
+                    <div class="decision-options">
+                        <div class="decision-option">Split IP ownership (B2B vs B2C)</div>
+                        <div class="decision-option">70/30 revenue split on B2B</div>
+                        <div class="decision-option">HealthE handles B2C marketing/operations</div>
+                        <div class="decision-option">Buyout option available after 12 months</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion mt-40">
+                <button class="collapsible" aria-expanded="false" aria-controls="accordion-comparison">
+                    <span class="collapsible-title">Build vs. Rent: Path Comparison</span>
+                    <span class="collapsible-arrow">▼</span>
+                </button>
+                <div class="collapsible-content" id="accordion-comparison">
+                    <table class="raci-table" style="margin-top: 16px;">
+                        <thead>
+                            <tr>
+                                <th>Factor</th>
+                                <th>Path 1A (B2B2C)</th>
+                                <th>Path 1B (Independent)</th>
+                                <th>Path 2 (Partnership)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Time to Launch</strong></td>
+                                <td>2-4 weeks</td>
+                                <td>3-4 months</td>
+                                <td>Ongoing (parallel)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Upfront Investment</strong></td>
+                                <td>$500-1K</td>
+                                <td>$2-3K + 60-80 hours</td>
+                                <td>Revenue share (no upfront)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IP Ownership</strong></td>
+                                <td>100% InnerPhuel</td>
+                                <td>100% InnerPhuel</td>
+                                <td>Split (B2B vs B2C)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>B2C Revenue Potential</strong></td>
+                                <td>Low (upsell only)</td>
+                                <td>High (full ecosystem)</td>
+                                <td>Medium (HealthE retains %)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Marketing Effort</strong></td>
+                                <td>Minimal</td>
+                                <td>High (cold traffic)</td>
+                                <td>None (HealthE handles)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Best If...</strong></td>
+                                <td>Want quick B2C test</td>
+                                <td>Want full control + scale</td>
+                                <td>Want to stay B2B-focused</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="accordion">
+                <button class="collapsible" aria-expanded="false" aria-controls="accordion-buyout">
+                    <span class="collapsible-title">Partnership Buyout Option (Path 2 → Path 1B Transition)</span>
+                    <span class="collapsible-arrow">▼</span>
+                </button>
+                <div class="collapsible-content" id="accordion-buyout">
+                    <div style="background: #F8F9FA; padding: 20px; border-radius: 8px;">
+                        <p style="font-size: 14px; color: #666; margin-bottom: 16px;">
+                            <strong>After 12 months:</strong> InnerPhuel can purchase HealthE's share of co-created assets
+                        </p>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <div class="card-title">Buyout Price</div>
+                                <div style="font-size: 13px; color: #666;">2x HealthE's trailing 12-month revenue share</div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-title">What Transfers</div>
+                                <ul>
+                                    <li>Email sequences & templates</li>
+                                    <li>Dashboard configurations</li>
+                                    <li>Content library & analytics data</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p style="font-size: 13px; color: #666; margin-top: 16px;">
+                            <em>Example: If HealthE earned $30K in Year 1, buyout = $60K (lump sum or 6-month installments)</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Utility: Check if element has a specific path (token-based, not string includes)
+            function hasPath(el, selected) {
+                const raw = el.getAttribute('data-path') || '';
+                const tokens = raw.split(',').map(s => s.trim());
+                
+                // Only use 'all' as a wildcard when 'all' is explicitly selected
+                // For specific paths (1a, 1b, 2), check if that exact token exists
+                return tokens.includes(selected);
+            }
+            
+            // Tab navigation
+            const navBtns = document.querySelectorAll('.nav-btn');
+            const contents = document.querySelectorAll('.content');
+            
+            // Keyboard navigation for tabs (Left/Right arrows)
+            navBtns.forEach((btn, index) => {
+                btn.addEventListener('keydown', (e) => {
+                    let targetIndex = index;
+                    
+                    if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        targetIndex = (index + 1) % navBtns.length;
+                    } else if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        targetIndex = (index - 1 + navBtns.length) % navBtns.length;
+                    } else {
+                        return;
+                    }
+                    
+                    navBtns[targetIndex].click();
+                    navBtns[targetIndex].focus();
+                });
+                
+                btn.addEventListener('click', () => {
+                    const targetTab = btn.getAttribute('data-tab');
+                    
+                    // Remove active class and update ARIA + tabindex
+                    navBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.setAttribute('aria-selected', 'false');
+                        b.setAttribute('tabindex', '-1');
+                    });
+                    
+                    // Hide all tabpanels
+                    contents.forEach(c => {
+                        c.classList.remove('active');
+                        c.setAttribute('hidden', '');
+                    });
+                    
+                    // Add active class and update ARIA + tabindex
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-selected', 'true');
+                    btn.setAttribute('tabindex', '0');
+                    
+                    // Show target tabpanel
+                    const targetPanel = document.getElementById(targetTab);
+                    targetPanel.classList.add('active');
+                    targetPanel.removeAttribute('hidden');
+                });
+            });
+            
+            // Initialize tabs properly
+            contents.forEach((content, index) => {
+                if (index !== 0) {
+                    content.setAttribute('hidden', '');
+                }
+            });
+            
+            navBtns.forEach((btn, index) => {
+                if (index === 0) {
+                    btn.setAttribute('tabindex', '0');
+                } else {
+                    btn.setAttribute('tabindex', '-1');
+                }
+            });
+            
+            // Accordion/Collapsible functionality with ARIA
+            document.querySelectorAll('.accordion').forEach(accordion => {
+                const trigger = accordion.querySelector('.collapsible');
+                const content = accordion.querySelector('.collapsible-content');
+                
+                trigger.addEventListener('click', () => {
+                    const isExpanded = accordion.classList.contains('active');
+                    
+                    // Toggle state
+                    accordion.classList.toggle('active');
+                    
+                    // Update ARIA
+                    trigger.setAttribute('aria-expanded', !isExpanded);
+                });
+            });
+            
+            // Flow Diagram Path Highlighting - with existence check
+            function initializeDiagram() {
+                const pathBtns = document.querySelectorAll('.path-btn');
+                const nodes = document.querySelectorAll('.node');
+                const connectors = document.querySelectorAll('.connector');
+                
+                // Check if elements exist
+                if (pathBtns.length === 0) {
+                    console.warn('No path buttons found');
+                    return;
+                }
+                if (nodes.length === 0) {
+                    console.warn('No SVG nodes found');
+                    return;
+                }
+                if (connectors.length === 0) {
+                    console.warn('No SVG connectors found');
+                    return;
+                }
+                
+                console.log('Diagram initialized:', {
+                    pathBtns: pathBtns.length,
+                    nodes: nodes.length,
+                    connectors: connectors.length
+                });
+                
+                // Initialize diagram with all paths shown
+                nodes.forEach(node => {
+                    node.classList.remove('dimmed');
+                    node.classList.add('active');
+                });
+                connectors.forEach(conn => {
+                    conn.classList.remove('dimmed');
+                    conn.classList.add('active');
+                });
+                
+                // Attach click handlers to path buttons
+                pathBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const selectedPath = this.getAttribute('data-path');
+                        console.log('Path selected:', selectedPath);
+                        
+                        // Update button states
+                        pathBtns.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        if (selectedPath === 'all') {
+                            // Show all paths - remove dimmed, add active
+                            nodes.forEach(node => {
+                                node.classList.remove('dimmed');
+                                node.classList.add('active');
+                            });
+                            connectors.forEach(conn => {
+                                conn.classList.remove('dimmed');
+                                conn.classList.add('active');
+                            });
+                            console.log('Showing all paths');
+                        } else {
+                            // Highlight specific path using token-based matching
+                            let activeNodeCount = 0;
+                            let activeConnectorCount = 0;
+                            
+                            nodes.forEach(node => {
+                                if (hasPath(node, selectedPath)) {
+                                    node.classList.remove('dimmed');
+                                    node.classList.add('active');
+                                    activeNodeCount++;
+                                } else {
+                                    node.classList.remove('active');
+                                    node.classList.add('dimmed');
+                                }
+                            });
+                            
+                            connectors.forEach(conn => {
+                                if (hasPath(conn, selectedPath)) {
+                                    conn.classList.remove('dimmed');
+                                    conn.classList.add('active');
+                                    activeConnectorCount++;
+                                } else {
+                                    conn.classList.remove('active');
+                                    conn.classList.add('dimmed');
+                                }
+                            });
+                            
+                            console.log('Highlighted path:', selectedPath, {
+                                activeNodes: activeNodeCount,
+                                activeConnectors: activeConnectorCount
+                            });
+                        }
+                    });
+                });
+            }
+            
+            // Initialize diagram
+            initializeDiagram();
+        });
+    </script>
+</body>
+</html>
