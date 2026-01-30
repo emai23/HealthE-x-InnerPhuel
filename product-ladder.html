@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Product Ladder — InnerPhuel × HealthE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--teal:#0D9488;--bg:#F8F9FA;--text:#1a1a1a;--muted:#666;--radius:12px}
+        *{box-sizing:border-box}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);margin:0}
+        .container{max-width:1100px;margin:36px auto;padding:24px}
+        .card{background:#fff;border-radius:var(--radius);padding:20px;box-shadow:0 2px 10px rgba(0,0,0,0.06);}
+        h1{color:var(--teal);font-size:24px;margin-bottom:6px}
+        .subtitle{color:var(--muted);font-size:13px;margin-bottom:18px}
+        .ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+        .step{background:#F8F9FA;border-radius:10px;padding:16px;border-left:4px solid var(--teal)}
+        .step h3{margin:0 0 8px 0;font-size:16px}
+        .step p{margin:0;color:var(--muted);font-size:13px}
+        .actions{margin-top:20px;display:flex;gap:12px}
+        .btn{padding:10px 14px;border-radius:10px;border:0;background:var(--teal);color:#fff;text-decoration:none;font-weight:600}
+        footer{margin-top:28px;color:#999;font-size:12px;text-align:center}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Product Ladder</h1>
+            <div class="subtitle">A concise view of post-pilot product paths and upsell options.</div>
+
+            <div class="ladder">
+                <div class="step">
+                    <h3>Entry — Pilot</h3>
+                    <p>2-day workshop + 30-day digital continuity. Low friction, bundled pilot.</p>
+                </div>
+
+                <div class="step">
+                    <h3>Core — B2B Upsell</h3>
+                    <p>Post-workshop individual packages and coaching add-ons for participants.</p>
+                </div>
+
+                <div class="step">
+                    <h3>Scale — Independent B2C</h3>
+                    <p>Full consumer funnel: lead magnets, courses, and subscription offers.</p>
+                </div>
+
+                <div class="step">
+                    <h3>Partnership</h3>
+                    <p>Parallel development: InnerPhuel focuses B2B while HealthE builds B2C.</p>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a class="btn" href="/index.html">Back to Dashboard</a>
+                <a class="btn" href="/product-ladder.html">Refresh</a>
+            </div>
+        </div>
+
+        <footer>
+            Created for the pilot repo — product ladder summary.
+        </footer>
+    </div>
+</body>
+</html>
