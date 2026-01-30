@@ -1,64 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Product Ladder — InnerPhuel × HealthE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root{--teal:#0D9488;--bg:#F8F9FA;--text:#1a1a1a;--muted:#666;--radius:12px}
-        *{box-sizing:border-box}
-        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);margin:0}
-        .container{max-width:1100px;margin:36px auto;padding:24px}
-        .card{background:#fff;border-radius:var(--radius);padding:20px;box-shadow:0 2px 10px rgba(0,0,0,0.06);}
-        h1{color:var(--teal);font-size:24px;margin-bottom:6px}
-        .subtitle{color:var(--muted);font-size:13px;margin-bottom:18px}
-        .ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
-        .step{background:#F8F9FA;border-radius:10px;padding:16px;border-left:4px solid var(--teal)}
-        .step h3{margin:0 0 8px 0;font-size:16px}
-        .step p{margin:0;color:var(--muted);font-size:13px}
-        .actions{margin-top:20px;display:flex;gap:12px}
-        .btn{padding:10px 14px;border-radius:10px;border:0;background:var(--teal);color:#fff;text-decoration:none;font-weight:600}
-        footer{margin-top:28px;color:#999;font-size:12px;text-align:center}
-    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>InnerPhuel Product Ladder - B2B vs B2C</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Spectral:wght@500;600&display=swap');
+        
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+        
+		body {
+			font-family: 'Inter', sans-serif;
+			background: #F1EDE4;
+			padding: 40px 20px;
+			color: #1a1a1a;
+		}
+        
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			background: white;
+			padding: 40px;
+			border-radius: 12px;
+			box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+		}
+        
+		.header {
+			text-align: center;
+			margin-bottom: 50px;
+		}
+        
+		.header h1 {
+			font-family: 'Spectral', serif;
+			font-size: 32px;
+			font-weight: 600;
+			color: #0D9488;
+			margin-bottom: 12px;
+		}
+        
+		.header p {
+			font-size: 16px;
+			color: #666;
+			line-height: 1.6;
+		}
+        
+		.funnels-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 40px;
+			margin-top: 40px;
+		}
+        
+		.funnel {
+			position: relative;
+		}
+        
+		.funnel-header {
+			text-align: center;
+			margin-bottom: 30px;
+			padding-bottom: 20px;
+			border-bottom: 3px solid #0D9488;
+		}
+        
+		.funnel-header h2 {
+			font-family: 'Spectral', serif;
+			font-size: 24px;
+			font-weight: 600;
+			color: #0D9488;
+			margin-bottom: 8px;
+		}
+        
+		.funnel-header .subtitle {
+			font-size: 14px;
+			color: #666;
+			font-weight: 500;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+        
+		.funnel-stage {
+			background: #F9FAFB;
+			border-left: 4px solid #0D9488;
+			padding: 20px;
+			margin-bottom: 16px;
+			border-radius: 8px;
+			transition: all 0.3s ease;
+			position: relative;
+		}
+        
+		.funnel-stage:hover {
+			background: #F0F9F8;
+			transform: translateX(4px);
+			box-shadow: 0 2px 8px rgba(13, 148, 136, 0.15);
+		}
+        
+		.stage-label {
+			font-size: 11px;
+			font-weight: 700;
+			color: #7C3AED;
+			text-transform: uppercase;
+			letter-spacing: 0.8px;
+			margin-bottom: 8px;
+		}
+        
+		.stage-title {
+			font-weight: 600;
+			font-size: 18px;
+			color: #1a1a1a;
+			margin-bottom: 8px;
+		}
+        
+		.stage-price {
+			font-size: 14px;
+			color: #0D9488;
+			font-weight: 600;
+			margin-bottom: 8px;
+		}
+        
+		.stage-description {
+			font-size: 14px;
+			color: #666;
+			line-height: 1.5;
+		}
+        
+		.arrow {
+			text-align: center;
+			color: #0D9488;
+			font-size: 24px;
+			margin: 8px 0;
+			font-weight: 600;
+		}
+        
+		.pilot-badge {
+			background: #7C3AED;
+			color: white;
+			padding: 4px 12px;
+			border-radius: 12px;
+			font-size: 11px;
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			display: inline-block;
+			margin-left: 8px;
+		}
+        
+		.future-badge {
+			background: #F97375;
+			color: white;
+			padding: 4px 12px;
+			border-radius: 12px;
+			font-size: 11px;
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			display: inline-block;
+			margin-left: 8px;
+		}
+        
+		.note {
+			background: #FFF9E6;
+			border-left: 4px solid #F97375;
+			padding: 20px;
+			margin-top: 40px;
+			border-radius: 8px;
+		}
+        
+		.note h3 {
+			font-size: 16px;
+			font-weight: 600;
+			color: #1a1a1a;
+			margin-bottom: 12px;
+		}
+        
+		.note ul {
+			margin-left: 20px;
+			line-height: 1.8;
+			color: #666;
+		}
+        
+		.note li {
+			font-size: 14px;
+			margin-bottom: 8px;
+		}
+        
+		.emphasis {
+			font-weight: 600;
+			color: #0D9488;
+		}
+        
+		@media (max-width: 900px) {
+			.funnels-container {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <h1>Product Ladder</h1>
-            <div class="subtitle">A concise view of post-pilot product paths and upsell options.</div>
-
-            <div class="ladder">
-                <div class="step">
-                    <h3>Entry — Pilot</h3>
-                    <p>2-day workshop + 30-day digital continuity. Low friction, bundled pilot.</p>
-                </div>
-
-                <div class="step">
-                    <h3>Core — B2B Upsell</h3>
-                    <p>Post-workshop individual packages and coaching add-ons for participants.</p>
-                </div>
-
-                <div class="step">
-                    <h3>Scale — Independent B2C</h3>
-                    <p>Full consumer funnel: lead magnets, courses, and subscription offers.</p>
-                </div>
-
-                <div class="step">
-                    <h3>Partnership</h3>
-                    <p>Parallel development: InnerPhuel focuses B2B while HealthE builds B2C.</p>
-                </div>
-            </div>
-
-            <div class="actions">
-                <a class="btn" href="/index.html">Back to Dashboard</a>
-                <a class="btn" href="/product-ladder.html">Refresh</a>
-            </div>
-        </div>
-
-        <footer>
-            Created for the pilot repo — product ladder summary.
-        </footer>
-    </div>
+	<div class="container">
+		<div class="header">
+			<h1>InnerPhuel Product Ladder: Two Distinct Funnels</h1>
+			<p>This diagram clarifies that the "Product Ladder" represents a pricing/value ladder across <strong>two separate customer journeys</strong>, not a single linear path. The pilot tests the <strong>B2B funnel only</strong>.</p>
+		</div>
+        
+		<div class="funnels-container">
+			<!-- B2B Funnel (Corporate) -->
+			<div class="funnel">
+				<div class="funnel-header">
+					<h2>B2B Funnel (Corporate)</h2>
+					<div class="subtitle">Current Focus — Pilot Tests This Path</div>
+				</div>
+                
+				<div class="funnel-stage">
+					<div class="stage-label">Entry Point</div>
+					<div class="stage-title">Corporate Decision-Makers</div>
+					<div class="stage-description">
+						HR leaders, founders, wellness coordinators seeking evidence-based burnout solutions for teams
+					</div>
+				</div>
+                
+				<div class="arrow">↓</div>
+                
+				<div class="funnel-stage">
+					<div class="stage-label">Offer Presentation</div>
+					<div class="stage-title">Workshop Proposal</div>
+					<div class="stage-description">
+						Tailored 2-day Resilience Advantage™ workshop pitch with ROI justification
+					</div>
+				</div>
+                
+				<div class="arrow">↓</div>
+                
+				<div class="funnel-stage">
+					<div class="stage-label">Core Offering</div>
+					<div class="stage-title">
+						2-Day Workshop <span class="pilot-badge">Pilot Focus</span>
+					</div>
+					<div class="stage-price">$5,000–$8,000 (Pilot: $8,500)</div>
+					<div class="stage-description">
+						Live HeartMath® training, HRV assessments, group facilitation for leadership teams (15-20 participants)
+					</div>
+				</div>
+                
+				<div class="arrow">↓</div>
+                
+				<div class="funnel-stage">
+					<div class="stage-label">Optional Upsell</div>
+					<div class="stage-title">
+						30-Day Digital Continuity <span class="pilot-badge">Pilot Focus</span>
+					</div>
+					<div class="stage-price">$1,500–$2,500 (Pilot: Bundled)</div>
+					<div class="stage-description">
+						Automated email sequences, self-guided practice prompts, engagement tracking (Engine 2 layer)
+					</div>
+				</div>
+                
+				<div class="arrow">↓</div>
+                
+				<div class="funnel-stage">
+					<div class="stage-label">Premium Retention</div>
+					<div class="stage-title">
+						Annual Retainer Model <span class="future-badge">Future</span>
+					</div>
+					<div class="stage-price">$400–$600/employee/year</div>
+					<div class="stage-description">
+						Quarterly workshops, year-round digital support, ongoing HRV tracking, leadership coaching (Year 2+)
+					</div>
+				</div>
+			</div>
+            
+			<!-- B2C Funnel (Individual) -->
+			<div class="funnel">
+				<div class="funnel-header">
+					<h2>B2C Funnel (Individual)</h2>
+					<div class="subtitle">Future Development — Not Required for Pilot</div>
+				</div>
+                
+				<div class="funnel-stage">
+					<div class="stage-label">Entry Point</div>
+					<div class="stage-title">
+						Individual Online Customer <span class="future-badge">Future</span>
+					</div>
+					<div class="stage-description">
+						High-achieving professionals seeking personal stress recovery solutions (cold traffic from content/ads)
+					</div>
+				</div>
+                
+				<div class="arrow">↓</div>
+                
+				<div class="funnel-stage">
+					<div class="stage-label">Lead Magnet</div>
+					<div class="stage-title">
+						Free Resource <span class="future-badge">Future</span>
+					</div>
+					<div class="stage-price">Free</div>
+					<div class="stage-description">
+						Downloadable guide (e.g., "5-Minute Coherence Reset"), email opt-in, list building
+					</div>
+				</div>
+                
+				<div class="arrow">↓</div>
+                
+				<div class="funnel-stage">
+					<div class="stage-label">Low-Barrier Entry</div>
+					<div class="stage-title">
+						Self-Assessment <span class="future-badge">Future</span>
+					</div>
+					<div class="stage-price">$27–$47</div>
+					<div class="stage-description">
+						Online quiz with personalized HRV health score and stress subtype identification
+					</div>
+				</div>
+                
+				<div class="arrow">↓</div>
+                
+				<div class="funnel-stage">
+					<div class="stage-label">Core Digital Product</div>
+					<div class="stage-title">
+						Self-Paced Protocol <span class="future-badge">Future</span>
+					</div>
+					<div class="stage-price">$97–$197</div>
+					<div class="stage-description">
+						30-day automated program with daily lessons, practice guides, nervous system regulation techniques
+					</div>
+				</div>
+                
+				<div class="arrow">↓</div>
+                
+				<div class="funnel-stage">
+					<div class="stage-label">Premium Offering</div>
+					<div class="stage-title">
+						Full Course / 1:1 Coaching <span class="future-badge">Future</span>
+					</div>
+					<div class="stage-price">$497–$1,500+</div>
+					<div class="stage-description">
+						Comprehensive training or personalized coaching for deeper transformation
+					</div>
+				</div>
+			</div>
+		</div>
+        
+		<div class="note">
+			<h3>Key Takeaways:</h3>
+			<ul>
+				<li><span class="emphasis">Two Distinct Customer Bases:</span> Corporate teams (B2B) and individual professionals (B2C) require completely different acquisition, messaging, and delivery models.</li>
+				<li><span class="emphasis">Pilot Scope:</span> The Corporate Pilot <strong>only</strong> tests the B2B funnel (workshop + digital continuity). It does <strong>not</strong> require building the B2C ladder.</li>
+				<li><span class="emphasis">Future Optionality:</span> Post-pilot, InnerPhuel can choose to build the B2C funnel (Path 1A or 1B) or continue scaling the B2B model exclusively (Path 2).</li>
+				<li><span class="emphasis">Pricing Ladder Context:</span> The "Product Ladder" on page 6 of the Strategic Guide shows the full pricing/value range across both funnels—it's not a single customer journey.</li>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>
+
